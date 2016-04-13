@@ -46,7 +46,10 @@ defmodule ExSyslog.JsonFormatter do
               |> Logger.Formatter.format(level, msg, timestamp, metadata)
               |> to_string()
 
-    log = %{level: level, message: msg_str, node: node()}
+    log = Application.get_env(:logger, :exsyslog_json)
+          |> Keyword.get(:tags, [])
+          |> Enum.reduce(%{level: level, message: msg_str, node: node()},
+                         &add_to_log/2)
 
     {:ok, log_json} = metadata
                       |> Enum.reduce(log, &add_to_log/2)
