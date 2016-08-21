@@ -12,11 +12,11 @@ defmodule Exsyslog.Mixfile do
      deps: deps]
   end
 
-  # Configuration for the OTP application
-  #
-  # Type `mix help compile.app` for more information
   def application do
-    [applications: [:logger, :syslog, :poison]]
+    [
+      applications: [:poison],
+      included_applications: [:syslog],
+    ]
   end
 
   defp description do
@@ -29,18 +29,9 @@ defmodule Exsyslog.Mixfile do
     [ files: ["lib", "mix.exs", "README.md", "LICENSE"],
       maintainers: ["Bruno Tavares"],
       licenses: ["MIT"],
-      links: %{"GitHub": "https://github.com/22cans/exsyslog"} ]
+      links: %{"GitHub": "https://github.com/steeryio/exsyslog"} ]
   end
 
-  # Dependencies can be Hex packages:
-  #
-  #   {:mydep, "~> 0.3.0"}
-  #
-  # Or git/path repositories:
-  #
-  #   {:mydep, git: "https://github.com/elixir-lang/mydep.git", tag: "0.1.0"}
-  #
-  # Type `mix help deps` for more examples and options
   defp deps do
     [{:syslog, "~> 1.0"},
      {:ex_doc, "~> 0.11", only: :dev},
