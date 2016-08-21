@@ -59,6 +59,10 @@ defmodule ExSyslog do
     {:ok, state}
   end
 
+  def handle_event(:flush, state) do
+     {:ok, state}
+   end
+
 
   ##############################################################################
   #
